@@ -1,0 +1,73 @@
+package com.example.siteComercio.service.impl;
+
+import java.util.List;
+
+
+import org.springframework.stereotype.Service;
+
+import com.example.siteComercio.dto.UserDto;
+import com.example.siteComercio.entity.User;
+import com.example.siteComercio.execption.UserNotFound;
+import com.example.siteComercio.mapper.UserMapper;
+import com.example.siteComercio.repository.UserRepository;
+import com.example.siteComercio.service.UserService;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class UserServiceImpl implements UserService{
+
+    private final UserRepository userRepository;
+    
+    public UserDto createUser(UserDto userDto){
+        User user = UserMapper.mapperToUser(userDto);
+
+        User userSaved = userRepository.save(user);
+
+        return UserMapper.mapperToDto(userSaved);
+    }
+    
+
+    public List<UserDto> getAllUsers(){
+        List<User> users = userRepository.findAll();
+
+        return users.stream().map( u -> UserMapper.mapperToDto(u)).toList();
+    }
+
+
+    public UserDto getUserById(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFound("User not found with id:" + id));
+
+
+        return UserMapper.mapperToDto(user);
+    }
+
+
+    public UserDto updateUser(Long id, UserDto userDto){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFound("User not found with id:" + id));
+
+        
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        user.setCreatedAt(userDto.getCreatedAt());
+        user.setRole(userDto.getRole());
+
+
+        userRepository.save(user);
+
+        return UserMapper.mapperToDto(user);
+
+    }
+
+
+    public void deleteUser(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFound("User not found with id: " + id));
+
+
+        userRepository.delete(user);
+    }
+}
