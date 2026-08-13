@@ -30,5 +30,5 @@ public class ProductDto {
 
     private Boolean active;
 
-    private Category category;
+    private CategoryDto category;
 }

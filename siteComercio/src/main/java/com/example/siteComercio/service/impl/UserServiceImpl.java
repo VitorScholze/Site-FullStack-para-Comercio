@@ -1,5 +1,6 @@
 package com.example.siteComercio.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService{
     
     public UserDto createUser(UserDto userDto){
         User user = UserMapper.mapperToUser(userDto);
+        user.setCreatedAt(LocalDateTime.now());
 
         User userSaved = userRepository.save(user);
 

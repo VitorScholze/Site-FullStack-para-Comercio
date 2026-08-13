@@ -38,4 +38,6 @@ public class OrderItem {
     private BigDecimal unitPrice;
 
     private BigDecimal subTotal;
+
+    
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.siteComercio.dto.ProductDto;
 import com.example.siteComercio.service.ProductService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){
         ProductDto product = productService.createProduct(productDto);
 
         return new ResponseEntity<>(product, HttpStatus.CREATED);
@@ -51,7 +52,7 @@ public class ProductController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto){
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto productDto){
         ProductDto product = productService.updateProduct(id, productDto);
 
         return ResponseEntity.ok(product);

@@ -1,10 +1,7 @@
 package com.example.siteComercio.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
 
-import com.example.siteComercio.entity.OrderStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,8 +2,11 @@ package com.example.siteComercio.dto;
 
 import java.time.LocalDateTime;
 
-import javax.management.relation.Role;
+import com.example.siteComercio.entity.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +21,18 @@ public class UserDto {
 
     private Long id;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String email;
 
-    private Role role;
+    @NotBlank
+    @JsonIgnore
+    private String password;
+
+    @NotNull
+    private UserRole role;
 
     private LocalDateTime createdAt;
 }

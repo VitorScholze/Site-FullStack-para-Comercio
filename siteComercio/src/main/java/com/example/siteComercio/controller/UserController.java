@@ -18,6 +18,7 @@ import com.example.siteComercio.dto.UserDto;
 
 import com.example.siteComercio.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 
@@ -30,7 +31,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> createUser( @Valid @RequestBody UserDto userDto){
         UserDto user = userService.createUser(userDto);
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -55,7 +56,7 @@ public class UserController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @Valid @RequestBody UserDto userDto){
         UserDto user = userService.updateUser(id, userDto);
 
         return ResponseEntity.ok(user);

@@ -1,5 +1,6 @@
 package com.example.siteComercio.service.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.example.siteComercio.entity.OrderItem;
 import com.example.siteComercio.entity.Product;
 import com.example.siteComercio.entity.User;
 import com.example.siteComercio.execption.OrderNotFound;
+import com.example.siteComercio.execption.OutOfStock;
 import com.example.siteComercio.execption.ProductNotFound;
 import com.example.siteComercio.execption.UserNotFound;
 import com.example.siteComercio.mapper.OrderItemMapper;
@@ -42,13 +44,31 @@ public class OrderServiceImpl implements OrderService{
             Product product = productRepository.findById(orderItemDto.getProductId())
                     .orElseThrow(() -> new ProductNotFound("Product not found with id:" + orderItemDto.getProductId()));
             
+            if(orderItemDto.getQuantity() > product.getStock()){
+                throw new OutOfStock("Quantity is more bigger than Product Stock");
+            }
+
+            if (orderItemDto.getQuantity() <= 0) {
+                throw new IllegalArgumentException("Quantity must be greater than zero");
+            }
+                
+            
             OrderItem item = OrderItemMapper.mapperToOrderItem(
                 orderItemDto,
                 product
             );
 
-        items.add(item);
+            Integer newStock = product.getStock() - orderItemDto.getQuantity();
+            product.setStock(newStock);
+            items.add(item);
+         
         }
+
+        BigDecimal total = items.stream()
+        .map(item -> item.getSubTotal())
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+         orderDto.setTotal(total);
 
         Order order = OrderMapper.mapperToOrder(
             orderDto,

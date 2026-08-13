@@ -10,6 +10,7 @@ import com.example.siteComercio.entity.Category;
 import com.example.siteComercio.entity.Product;
 import com.example.siteComercio.execption.CategoryNotFound;
 import com.example.siteComercio.execption.ProductNotFound;
+import com.example.siteComercio.mapper.CategoryMapper;
 import com.example.siteComercio.mapper.ProductMapper;
 import com.example.siteComercio.repository.CategoryRepository;
 import com.example.siteComercio.repository.ProductRepository;
@@ -78,7 +79,7 @@ public class ProductServiceImpl  implements ProductService{
         product.setStock(productDto.getStock());
         product.setImageUrl(productDto.getImageUrl());
         product.setActive(productDto.getActive());
-        product.setCategory(productDto.getCategory());
+        product.setCategory(CategoryMapper.mapperToCategory(productDto.getCategory()));
 
         Product savedProduct = productRepository.save(product);
 
