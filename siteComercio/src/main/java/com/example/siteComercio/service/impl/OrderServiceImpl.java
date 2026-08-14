@@ -74,7 +74,11 @@ public class OrderServiceImpl implements OrderService{
             orderDto,
             user,
             items
-    );
+        );
+
+        for (OrderItem item : items) {
+            item.setOrder(order);
+        }
 
         Order savedOrder = orderRepository.save(order);
 
