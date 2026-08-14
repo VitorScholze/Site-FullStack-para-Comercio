@@ -3,7 +3,7 @@ package com.example.siteComercio.dto;
 import java.time.LocalDateTime;
 
 import com.example.siteComercio.entity.UserRole;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,7 +28,7 @@ public class UserDto {
     private String email;
 
     @NotBlank
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotNull

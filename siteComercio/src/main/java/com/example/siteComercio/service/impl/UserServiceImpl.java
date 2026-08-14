@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.siteComercio.dto.UserDto;
@@ -19,13 +20,19 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+   
+    
     
     public UserDto createUser(UserDto userDto){
         User user = UserMapper.mapperToUser(userDto);
         user.setCreatedAt(LocalDateTime.now());
 
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
         User userSaved = userRepository.save(user);
+
 
         return UserMapper.mapperToDto(userSaved);
     }
@@ -56,6 +63,8 @@ public class UserServiceImpl implements UserService{
         user.setEmail(userDto.getEmail());
         user.setCreatedAt(userDto.getCreatedAt());
         user.setRole(userDto.getRole());
+        String senha = passwordEncoder.encode(userDto.getPassword());
+        user.setPassword(senha);
 
 
         userRepository.save(user);
