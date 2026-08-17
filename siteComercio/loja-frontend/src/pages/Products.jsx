@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import { getAllProdutos } from '../services/productService'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 export const Products = () => {
 
 const [produtos, setProdutos] = useState([])
+
+const [searchParams] = useSearchParams()
+
+const categoriaSelecionada = searchParams.get("category")
 
 useEffect(() => {
     getAllProdutos().then((response) => {
@@ -36,7 +40,8 @@ useEffect(() => {
             <div className="row g-4">
             
 
-                {produtos.map((produto) => (
+                {produtos.filter((produto) => !categoriaSelecionada || produto?.category.name.toLowerCase() 
+                ===  categoriaSelecionada.toLowerCase()).map((produto) => (
 
                     <div className="col-sm-6 col-lg-3" key={produto.id}>
 

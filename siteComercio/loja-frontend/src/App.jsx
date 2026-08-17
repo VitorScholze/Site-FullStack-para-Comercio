@@ -10,6 +10,7 @@ import { Register } from './pages/Register';
 import { Orders } from './pages/Orders';
 import { OrderDetails } from './pages/OrderDetails';
 import { MainLayout } from './layouts/MainLayout';
+import { Categories } from './pages/Categories';
 
 function App() {
   
@@ -22,6 +23,8 @@ function App() {
           <Route element={<MainLayout/>}>
 
           <Route path = "/" element = {<Home/>}/>
+
+          <Route path = "/categorias" element = {<Categories/>}/>
 
           <Route path = "/produtos" element = {<Products/>}/>
 
