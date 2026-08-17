@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getProdutoById } from '../services/productService';
 
+
 export const ProductDetails = () => {
 
     const {id} = useParams();
 
     const [quantidade, setQuantidade] = useState(1);
 
-    const [carrinho, setCarrinho] = useState([])
-
     const [produto, setProduto] = useState(null);
+
+    const [carrinho, setCarrinho] = useState([])
 
     useEffect(() => {
         getProdutoById(id).then((response) => {
@@ -23,7 +24,34 @@ export const ProductDetails = () => {
 
 
     function adicionarAoCarrinho(){
-        
+
+        const carrinho = JSON.parse(localStorage.getItem("carrinho")) || []
+
+        const produtoExiste = carrinho.some((item => item.id === produto.id))
+
+        if(produtoExiste) {
+        const novoCarrinho = carrinho.map((item) => {
+            if (item.id === produto.id) {
+                return {
+                    ...item,
+                    quantidade: item.quantidade + 1
+                }
+            }
+
+            return item
+        })
+         localStorage.setItem(
+            "carrinho",
+            JSON.stringify(carrinhoNovo)
+        )
+        }else{
+            carrinho.push({
+            ...produto,
+            quantidade:quantidade
+        })
+        }
+
+        localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
     }
 
 
