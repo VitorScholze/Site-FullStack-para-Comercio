@@ -1,0 +1,14 @@
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    gap: 24px;
+    justify-content: center;
+}
+
+.category-item {
+    width: 320px;
+}
+
+.category-card {
+    height: 280px;
+}

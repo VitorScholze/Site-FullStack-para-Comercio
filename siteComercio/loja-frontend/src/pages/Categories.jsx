@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllCategories } from '../services/categoryService'
+import { Link } from 'react-router-dom'
+
 
 export const Categories = () => {
+
+    const [categorias, setCategorias] = useState([])
+
+    useEffect(() => {
+        getAllCategories().then((response) => {
+            setCategorias(response.data)
+            console.log(response.data)
+        }).catch(error => {
+            console.error(error)
+        })
+
+    },[])
+
   return (
-    <div className="container py-5">
+    <div className="container py-5 category-container">
 
     {/* Cabeçalho */}
     <div className="text-center mb-5">
@@ -12,36 +28,41 @@ export const Categories = () => {
         </p>
     </div>
 
-    {/* Categorias */}
-    <div className="row g-4">
+    
+    <div className="category-grid">
 
-        {/* Categoria */}
-        <div className="col-md-6 col-lg-4">
+        { categorias.map((categoria) => (
+
+        <div className="category-item" key = {categoria.id}>
+            <Link to = {`/produtos?category=${categoria.name}`} className = "btn btn-dark">
             <div className="card h-100 shadow-sm">
 
                 <div className="card-body text-center">
+    
 
-                    <div className="mb-3">
-                        👕
-                    </div>
-
-                    <h3>Camisetas</h3>
+                    <h3>{categoria.name}</h3>
 
                     <p className="text-muted">
-                        Camisetas para diferentes estilos e ocasiões.
+                        {categoria.description}
                     </p>
 
-                    <a href="#" className="btn btn-dark">
+                    
+                <div className="mt-auto">
+                    <span className="btn btn-dark">
                         Ver produtos
-                    </a>
+                    </span>
+                </div>
 
                 </div>
 
             </div>
+            </Link>
         </div>
+))}
 
         </div>
 
 </div>
+
   )
 }

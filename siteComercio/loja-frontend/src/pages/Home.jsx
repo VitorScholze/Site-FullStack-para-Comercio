@@ -244,7 +244,7 @@ export const Home = () => {
                                             <div className="bg-white rounded-top-4 p-5 text-center">
 
                                                 <span className="display-2">
-                                                    👕
+                                                    Imagem
                                                 </span>
 
                                             </div>
