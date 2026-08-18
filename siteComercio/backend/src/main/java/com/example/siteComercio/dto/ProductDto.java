@@ -30,5 +30,7 @@ public class ProductDto {
 
     private Boolean active;
 
+    private Boolean featured;
+    
     private CategoryDto category;
 }

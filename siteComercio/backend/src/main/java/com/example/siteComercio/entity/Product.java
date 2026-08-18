@@ -42,6 +42,8 @@ public class Product {
 
     private Boolean active;
 
+    private Boolean featured;
+
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;

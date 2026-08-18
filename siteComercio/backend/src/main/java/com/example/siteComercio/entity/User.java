@@ -2,8 +2,6 @@ package com.example.siteComercio.entity;
 
 import java.time.LocalDateTime;
 
-import javax.management.relation.Role;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

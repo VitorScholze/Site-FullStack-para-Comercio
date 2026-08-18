@@ -2,13 +2,14 @@ package com.example.siteComercio.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.siteComercio.dto.UserDto;
 import com.example.siteComercio.entity.User;
+import com.example.siteComercio.execption.GlobalExceptionHandler;
 import com.example.siteComercio.execption.UserNotFound;
 import com.example.siteComercio.mapper.UserMapper;
 import com.example.siteComercio.repository.UserRepository;
@@ -80,5 +81,21 @@ public class UserServiceImpl implements UserService{
 
 
         userRepository.delete(user);
+    }
+
+
+    public UserDto findUserByEmail(String email){
+
+        User user = userRepository.findUserByEmail(email);
+
+        if(user == null){
+            throw new UserNotFound("User not found with email: " + email);
+        }
+
+        return UserMapper.mapperToDto(user);
+
+
+
+
     }
 }
