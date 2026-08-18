@@ -5,5 +5,5 @@ import com.example.siteComercio.dto.UserDto;
 
 public interface AuthService {
     
-    public UserDto login(LoginDto loginDto);
+    public String login(LoginDto loginDto);
 }

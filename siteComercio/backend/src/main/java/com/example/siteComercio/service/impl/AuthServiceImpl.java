@@ -10,8 +10,9 @@ import com.example.siteComercio.execption.InvalidCredentialsException;
 import com.example.siteComercio.mapper.UserMapper;
 import com.example.siteComercio.repository.UserRepository;
 import com.example.siteComercio.service.AuthService;
+import com.example.siteComercio.service.JwtService;
 
-
+import io.jsonwebtoken.Jwt;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -20,12 +21,13 @@ public class AuthServiceImpl implements AuthService {
     
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final JwtService jwtService;
     
      
     
 
     @Override
-    public UserDto login(LoginDto loginDto){
+    public String login(LoginDto loginDto){
 
         String email = loginDto.getEmail();
         User user = userRepository.findUserByEmail(email);
@@ -39,10 +41,10 @@ public class AuthServiceImpl implements AuthService {
         if(loginValido == false){
             throw new InvalidCredentialsException("Invalid Credentials!");
         }
-
-        return UserMapper.mapperToDto(user);
-
-
         
+        String token = jwtService.generateToken(user);
+
+        return token;
+       
     }
 }

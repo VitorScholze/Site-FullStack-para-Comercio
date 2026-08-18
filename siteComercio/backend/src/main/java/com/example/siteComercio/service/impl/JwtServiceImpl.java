@@ -3,6 +3,7 @@ package com.example.siteComercio.service.impl;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.lang.String;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,10 @@ import com.example.siteComercio.service.JwtService;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lombok.AllArgsConstructor;
+
 
 @Service
-@AllArgsConstructor
+
 public class JwtServiceImpl implements JwtService {
 
     @Value("${jwt.secret}")

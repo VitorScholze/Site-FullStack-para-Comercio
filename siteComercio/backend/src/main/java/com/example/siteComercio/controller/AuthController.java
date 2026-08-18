@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.siteComercio.dto.LoginDto;
-import com.example.siteComercio.dto.UserDto;
 import com.example.siteComercio.service.AuthService;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +18,11 @@ public class AuthController {
     
     private final AuthService authService;
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody LoginDto logindDto){
+    public ResponseEntity<String> login(@RequestBody LoginDto logindDto){
 
-        UserDto user = authService.login(logindDto);
-
-        return ResponseEntity.ok(user);
+        String token = authService.login(logindDto);
+        
+        return ResponseEntity.ok(token);
 
 
     }
