@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.siteComercio.dto.UserDto;
 import com.example.siteComercio.entity.User;
-import com.example.siteComercio.execption.GlobalExceptionHandler;
 import com.example.siteComercio.execption.UserNotFound;
 import com.example.siteComercio.mapper.UserMapper;
 import com.example.siteComercio.repository.UserRepository;
