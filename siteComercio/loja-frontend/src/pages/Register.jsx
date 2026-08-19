@@ -10,7 +10,7 @@ export const Register = () => {
   function registerUser(event){
     event.preventDefault();
 
-    const user = (name, email, password)
+    const user = {name, email, password}
 
     register(user).then((response) => {
       console.log(response.data)
