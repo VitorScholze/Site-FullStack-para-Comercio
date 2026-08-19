@@ -4,15 +4,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.siteComercio.dto.LoginDto;
-import com.example.siteComercio.dto.UserDto;
 import com.example.siteComercio.entity.User;
 import com.example.siteComercio.execption.InvalidCredentialsException;
-import com.example.siteComercio.mapper.UserMapper;
 import com.example.siteComercio.repository.UserRepository;
 import com.example.siteComercio.service.AuthService;
 import com.example.siteComercio.service.JwtService;
 
-import io.jsonwebtoken.Jwt;
+
 import lombok.AllArgsConstructor;
 
 @Service

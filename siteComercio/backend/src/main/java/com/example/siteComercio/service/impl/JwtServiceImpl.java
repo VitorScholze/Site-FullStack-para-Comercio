@@ -3,6 +3,9 @@ package com.example.siteComercio.service.impl;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+
+import javax.crypto.SecretKey;
+
 import java.lang.String;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -35,5 +38,22 @@ public class JwtServiceImpl implements JwtService {
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(key)
                 .compact();
+    }
+
+
+    public String extractEmail(String token){
+
+        SecretKey key = Keys.hmacShaKeyFor(
+            secret.getBytes(StandardCharsets.UTF_8)
+        );
+
+         return Jwts.parser()
+            .verifyWith(key)
+            .build()
+            .parseSignedClaims(token)
+            .getPayload()
+            .getSubject();
+
+    
     }
 }

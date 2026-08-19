@@ -2,6 +2,7 @@ package com.example.siteComercio.mapper;
 
 import com.example.siteComercio.dto.UserDto;
 import com.example.siteComercio.entity.User;
+import com.example.siteComercio.entity.UserRole;
 
 public class UserMapper {
     
@@ -13,7 +14,7 @@ public class UserMapper {
         userDto.setName(user.getName());
         userDto.setEmail(user.getEmail());
         userDto.setCreatedAt(user.getCreatedAt());
-        userDto.setRole(user.getRole());
+        userDto.setRole(UserRole.USER);
         userDto.setPassword(user.getPassword());
 
         return userDto;
@@ -27,7 +28,7 @@ public class UserMapper {
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setCreatedAt(userDto.getCreatedAt());
-        user.setRole(userDto.getRole());
+        user.setRole(UserRole.USER);
         user.setPassword(userDto.getPassword());
 
         return user;
