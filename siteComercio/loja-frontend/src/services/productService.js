@@ -1,17 +1,15 @@
-import axios from "axios"
-
-const REST_API_PRODUCTS_URL = "http://localhost:8080/api/products"
+import api from "./api"
 
 
-const createProduto = (produto) => axios.put(REST_API_PRODUCTS_URL , produto)
+const createProduto = (produto) => api.post("/products", produto)
 
-const getProdutoById = (produtoId) => axios.get(REST_API_PRODUCTS_URL + "/" + produtoId)
+const getProdutoById = (produtoId) => api.get("/products/" + produtoId)
 
-const getAllProdutos = () => axios.get(REST_API_PRODUCTS_URL)
+const getAllProdutos = () => api.get("/products")
 
-const updateProduto = (produtoId, produto) => axios.put(REST_API_PRODUCTS_URL + "/" + produtoId, produto)
+const updateProduto = (produtoId, produto) => api.put("/products/" + produtoId, produto)
 
-const deleteProduto = (produtoId) => axios.delete(REST_API_PRODUCTS_URL + "/" + produtoId)
+const deleteProduto = (produtoId) => api.delete("/products/" + produtoId)
 
 export {
     createProduto,

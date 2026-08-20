@@ -1,8 +1,5 @@
-import axios from "axios"
+import api from "./api"
 
-
-const REST_API_BASE_URL = "http://localhost:8080/api/category"
-
-const getAllCategories = () => axios.get(REST_API_BASE_URL)
+const getAllCategories = () => api.get("/category")
 
 export{getAllCategories}

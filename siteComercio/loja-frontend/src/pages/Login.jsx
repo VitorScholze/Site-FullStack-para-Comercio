@@ -13,6 +13,7 @@ export const Login = () => {
     const user = {email, password}
 
     login(user).then((response) => {
+      localStorage("token", response.data)
       console.log(response.data)
     }).catch((error) => {
       console.error(error)
