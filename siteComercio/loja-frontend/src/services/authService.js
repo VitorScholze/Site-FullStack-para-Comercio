@@ -21,5 +21,5 @@ export const isUserLoggedIn = () => {
 }
 
 export const logout = () => {
-    return localStorage.clear("token")
+    return localStorage.removeItem("token")
 }

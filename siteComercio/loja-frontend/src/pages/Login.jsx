@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { login, storeToken } from '../services/authService'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
   const[email, setEmail] = useState("")
   const[password, setPassword] = useState("")
+  const navigator = useNavigate();
 
 
   function loginUser(event){
@@ -15,6 +17,7 @@ export const Login = () => {
     login(user).then((response) => {
       storeToken(response.data)
       console.log("Login Realizado!")
+      navigator(`/`)
     }).catch((error) => {
       console.error(error)
     })

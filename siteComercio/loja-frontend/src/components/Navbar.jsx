@@ -1,7 +1,27 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { isUserLoggedIn, logout } from "../services/authService"
+import { useEffect, useState } from 'react'
 
 export const Navbar = () => {
+    const[loggedIn, setLoggedIn] = useState(isUserLoggedIn())
+
+    const location = useLocation();
+
+    useEffect(() => {
+        setLoggedIn(isUserLoggedIn())
+    },[location])
+
+
+
+    function handleLogout(){
+        logout()
+        setLoggedIn(false)
+    }
+
     return (
+
+        
+        
         <nav className="navbar navbar-expand-lg bg-white border-bottom">
             <div className="container py-2">
 
@@ -62,19 +82,24 @@ export const Navbar = () => {
 
                     <div className="d-flex align-items-center gap-2">
 
-                        <Link
-                            to="/login"
+                    {loggedIn ? (
+                        <button
                             className="btn btn-outline-dark"
+                            onClick={handleLogout}
                         >
-                            Entrar
-                        </Link>
+                            Sair
+                        </button>
+                    ) : (
+                        <>
+                            <Link to="/login" className="btn btn-outline-dark me-2">
+                                Entrar
+                            </Link>
 
-                        <Link
-                            to="/carrinho"
-                            className="btn btn-dark"
-                        >
-                            🛒
-                        </Link>
+                            <Link to="/register" className="btn btn-dark">
+                                Criar conta
+                            </Link>
+                        </>
+                    )}
 
                     </div>
 
