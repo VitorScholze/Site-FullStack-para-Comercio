@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { login } from '../services/authService'
+import { login, storeToken } from '../services/authService'
 
 export const Login = () => {
 
@@ -13,8 +13,8 @@ export const Login = () => {
     const user = {email, password}
 
     login(user).then((response) => {
-      localStorage("token", response.data)
-      console.log(response.data)
+      storeToken(response.data)
+      console.log("Login Realizado!")
     }).catch((error) => {
       console.error(error)
     })

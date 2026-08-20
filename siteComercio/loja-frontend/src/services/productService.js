@@ -1,6 +1,5 @@
 import api from "./api"
 
-
 const createProduto = (produto) => api.post("/products", produto)
 
 const getProdutoById = (produtoId) => api.get("/products/" + produtoId)
