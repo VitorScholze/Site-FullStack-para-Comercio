@@ -10,6 +10,7 @@ export const ProductForm = () => {
     const [price, setPrice] = useState("")
     const [stock, setStock] = useState("")
     const [category, setCategory] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
 
     const [categories, setCategories] = useState([])
 
@@ -33,7 +34,8 @@ export const ProductForm = () => {
             stock,
             category: {
                 id: Number(category)
-            }
+            },
+            imageUrl
         }
 
         createProduto(produto)
@@ -171,6 +173,23 @@ export const ProductForm = () => {
                                         />
 
                                     </div>
+
+                                    <div className="mb-4">
+
+                                    <label className="form-label fw-semibold">
+                                        URL da imagem
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={imageUrl}
+                                        placeholder="https://..."
+                                        onChange={(e) => setImageUrl(e.target.value)}
+                                    />
+
+                                </div>
+
 
                                 </div>
 

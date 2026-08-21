@@ -53,13 +53,14 @@ useEffect(() => {
 
                         <div className="card border-0 shadow-sm rounded-4 h-100">
 
-                            <div className="bg-light p-5 text-center rounded-top-4">
-                                <span className="display-2">
-                                    👟
-                                </span>
-                            </div>
-
                             <div className="card-body">
+
+                                <img
+                                    src={produto.imageUrl}
+                                    alt={produto.name}
+                                    className="card-img-top"
+                                    style={{ height: "250px", objectFit: "cover" }}
+                                />
 
                                 <small className="text-secondary">
                                     {produto.category?.name}
