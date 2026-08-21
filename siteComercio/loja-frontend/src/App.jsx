@@ -28,7 +28,7 @@ function App() {
 
           <Route path = "/criarProduto" element = {<ProductForm/>}/>
 
-          <Route path = "/criarProduto/:id" element = {<ProductForm/>}/>
+          <Route path = "/editarProduto/:id" element = {<ProductForm/>}/>
 
           <Route path = "/gerenciarProdutos" element = {<ManagerProducts/>}/>
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { createProduto } from "../services/productService"
 import { getAllCategories } from "../services/categoryService"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 export const ProductForm = () => {
 
@@ -12,6 +12,8 @@ export const ProductForm = () => {
     const [category, setCategory] = useState("")
 
     const [categories, setCategories] = useState([])
+
+    const {id} = useParams()
 
     const navigate = useNavigate()
 
@@ -54,6 +56,19 @@ export const ProductForm = () => {
         })
     }
 
+
+    function setTitle(){
+        if(id){
+            return <h2 className="fw-bold mb-1">
+                        Editar Produto
+                    </h2>
+        }else{
+            return  <h2 className="fw-bold mb-1">
+                        Cadastrar Produto
+                    </h2>
+        }
+    }
+
     return (
         <div className="container py-5">
 
@@ -62,9 +77,8 @@ export const ProductForm = () => {
                 <div className="col-lg-8">
 
                     <div className="mb-4">
-                        <h2 className="fw-bold mb-1">
-                            Cadastrar Produto
-                        </h2>
+
+                        {setTitle()}
 
                         <p className="text-muted mb-0">
                             Preencha as informações do produto abaixo.

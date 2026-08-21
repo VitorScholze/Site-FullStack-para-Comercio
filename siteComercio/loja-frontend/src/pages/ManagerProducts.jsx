@@ -121,9 +121,9 @@ export const ManagerProducts = () => {
 
                                     <td className="text-end px-4">
 
-                                        <button className="btn btn-sm btn-outline-dark me-2">
+                                        <Link  to = {`/editarProduto/${produto.id}`} className="btn btn-sm btn-outline-dark me-2">
                                             Editar
-                                        </button>
+                                        </Link>
 
                                         <button className="btn btn-sm btn-outline-danger" onClick ={() => removerProduto(produto.id)}>
                                             Excluir
