@@ -11,6 +11,8 @@ import { Orders } from './pages/Orders';
 import { OrderDetails } from './pages/OrderDetails';
 import { MainLayout } from './layouts/MainLayout';
 import { Categories } from './pages/Categories';
+import { ManagerProducts } from './pages/ManagerProducts';
+import ProductForm from './pages/ProductForm';
 
 function App() {
   
@@ -23,6 +25,12 @@ function App() {
           <Route element={<MainLayout/>}>
 
           <Route path = "/" element = {<Home/>}/>
+
+          <Route path = "/criarProduto" element = {<ProductForm/>}/>
+
+          <Route path = "/criarProduto/:id" element = {<ProductForm/>}/>
+
+          <Route path = "/gerenciarProdutos" element = {<ManagerProducts/>}/>
 
           <Route path = "/login" element = {<Login/>}/>
 

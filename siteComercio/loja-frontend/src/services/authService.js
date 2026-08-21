@@ -1,4 +1,5 @@
 import axios from "axios"
+import { jwtDecode } from "jwt-decode"
 
 const API_BASE_URL = "http://localhost:8080/api"
 
@@ -22,4 +23,20 @@ export const isUserLoggedIn = () => {
 
 export const logout = () => {
     return localStorage.removeItem("token")
+}
+
+export const getUserLoggedIn = () => {
+    const token = getToken();
+
+    if(token == null){
+        return null
+    }
+
+    return jwtDecode(token)
+}
+
+export const isUserAdmin = () => {
+    const user = getUserLoggedIn();
+
+    return user?.role == "ADMIN"
 }

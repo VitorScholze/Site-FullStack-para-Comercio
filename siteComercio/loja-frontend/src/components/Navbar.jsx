@@ -1,14 +1,16 @@
 import { Link, useLocation } from 'react-router-dom'
-import { isUserLoggedIn, logout } from "../services/authService"
+import { isUserAdmin, isUserLoggedIn, logout } from "../services/authService"
 import { useEffect, useState } from 'react'
 
 export const Navbar = () => {
     const[loggedIn, setLoggedIn] = useState(isUserLoggedIn())
+    const[admin, setAdmin] = useState(isUserAdmin())
 
     const location = useLocation();
 
     useEffect(() => {
         setLoggedIn(isUserLoggedIn())
+        setAdmin(isUserAdmin())
     },[location])
 
 
@@ -25,6 +27,7 @@ export const Navbar = () => {
         <nav className="navbar navbar-expand-lg bg-white border-bottom">
             <div className="container py-2">
 
+    
                 <Link
                     className="navbar-brand fw-bold fs-4 text-dark"
                     to="/"
@@ -77,6 +80,17 @@ export const Navbar = () => {
                                 Categorias
                             </Link>
                         </li>
+
+                        {admin && (
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link text-dark"
+                                    to="/gerenciarProdutos"
+                                >
+                                    Gerenciar produtos
+                                </Link>
+                            </li>
+                        )}
 
                     </ul>
 
