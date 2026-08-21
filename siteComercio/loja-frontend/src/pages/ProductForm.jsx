@@ -29,7 +29,9 @@ export const ProductForm = () => {
             description,
             price,
             stock,
-            category
+            category: {
+                id: Number(category)
+            }
         }
 
         createProduto(produto)
@@ -74,7 +76,7 @@ export const ProductForm = () => {
 
                         <div className="card-body p-4 p-md-5">
 
-                            <form>
+                            <form onSubmit={criarProduto}>
 
                                 <div className="mb-4">
 
@@ -204,7 +206,6 @@ export const ProductForm = () => {
                                     <button
                                         type="submit"
                                         className="btn btn-dark px-4"
-                                        onClick = {() => criarProduto()}
                                     >
                                         Cadastrar produto
                                     </button>
